@@ -13,7 +13,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center py-4 px-[3px]">
       <button
         onClick={toggleTheme}
         className="relative flex items-center justify-center w-12 h-12 rounded-full border border-gray-500 bg-white transition-all"
