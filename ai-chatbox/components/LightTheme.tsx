@@ -30,26 +30,26 @@ const LightChatbox = () => {
   }, [messages]);
 
   return (
-    <div className="flex items-center justify-center p-7">
+    <div className="flex items-center justify-center pt-7">
       <Card className="w-full max-w-2xl bg-white shadow-2xl rounded-lg overflow-hidden">
         <CardHeader className="bg-[#5F9EA0] text-white p-4">
           <CardTitle className="text-2xl font-bold text-center">
             AI Assistant
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-4">
+        <CardContent className="p-1">
           <ScrollArea className="h-96 w-full p-4">
-            <div className="flex flex-col w-full mx-auto space-y-4">
+            <div className="flex flex-col w-full mx-auto space-y-6">
               {messages.map((m) => (
                 <div
                   key={m.id}
                   className={`flex ${
                     m.role === "user" ? "justify-end" : "justify-start"
-                  } mb-4`}
+                  } `}
                 >
                   <div
-                    className={`flex items-start gap-2 ${
-                      m.role === "user" ? "flex-row-reverse" : "flex-row"
+                    className={`flex items-start gap-1 ${
+                      m.role === "user" ? "flex-row-reverse ml-10" : "flex-row"
                     }`}
                   >
                     <Avatar className="flex items-center justify-center bg-slate-200 rounded-full size-11">
@@ -62,8 +62,8 @@ const LightChatbox = () => {
                     <div
                       className={`mx-2 p-3 ${
                         m.role === "user"
-                          ? "bg-blue-100 text-blue-900 rounded-full"
-                          : "bg-gray-100 text-gray-900 rounded-lg"
+                          ? "bg-blue-100 text-blue-900 rounded-3xl"
+                          : "bg-gray-100 text-gray-900 rounded-md"
                       } shadow-md`}
                     >
                       <p className="text-sm">{m.content}</p>

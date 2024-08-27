@@ -30,14 +30,14 @@ const DarkChatbox = () => {
   }, [messages]);
 
   return (
-    <div className="flex items-center justify-center p-7">
+    <div className="flex items-center justify-center pt-7">
       <Card className="w-full max-w-2xl bg-gray-900 shadow-2xl rounded-lg overflow-hidden">
         <CardHeader className="bg-[#1F2937] text-white p-4">
           <CardTitle className="text-2xl font-bold text-center">
             AI Assistant
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-4">
+        <CardContent className="py-1 px-0">
           <ScrollArea className="h-96 w-full p-4">
             <div className="flex flex-col w-full mx-auto space-y-4">
               {messages.map((m) => (
@@ -45,11 +45,11 @@ const DarkChatbox = () => {
                   key={m.id}
                   className={`flex ${
                     m.role === "user" ? "justify-end" : "justify-start"
-                  } mb-4`}
+                  }`}
                 >
                   <div
                     className={`flex items-start ${
-                      m.role === "user" ? "flex-row-reverse" : "flex-row"
+                      m.role === "user" ? "flex-row-reverse ml-8" : "flex-row"
                     }`}
                   >
                     <Avatar className="flex items-center justify-center bg-slate-900 rounded-full size-11">
@@ -62,7 +62,7 @@ const DarkChatbox = () => {
                     <div
                       className={`mx-2 p-3 ${
                         m.role === "user"
-                          ? "bg-[#1F305E] text-white rounded-full"
+                          ? "bg-[#1F305E] text-white rounded-3xl"
                           : "bg-gray- text-white rounded-lg"
                       } shadow-md`}
                     >
