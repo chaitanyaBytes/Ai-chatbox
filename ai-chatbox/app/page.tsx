@@ -16,7 +16,7 @@ const Homepage = () => {
     <div className="flex flex-col items-center p-4">
       <button
         onClick={toggleTheme}
-        className="relative flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 bg-white transition-all"
+        className="relative flex items-center justify-center w-12 h-12 rounded-full border border-gray-500 bg-white transition-all"
       >
         <Sun
           className={`h-6 w-6 transition-transform duration-300 ${
