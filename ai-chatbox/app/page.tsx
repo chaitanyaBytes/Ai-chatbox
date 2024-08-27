@@ -1,102 +1,39 @@
 "use client";
 
-import { useChat } from "ai/react";
-import { Bot, Send, User } from "lucide-react";
+import DarkChatbox from "@/components/DarkTheme";
+import LightChatbox from "@/components/LightTheme";
+import { Moon, Sun } from "lucide-react";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Avatar } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area";
+const Homepage = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
-import { Input } from "@/components/ui/input";
-import { useEffect, useRef, useState } from "react";
-
-const Chatbox = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const messagesEndRef: any = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
   return (
-    <div className="flex items-center justify-center min-h-screen from-blue-200 via-blue-300 to-blue-400 p-6">
-      <Card className="w-full max-w-2xl bg-white shadow-2xl rounded-lg overflow-hidden">
-        <CardHeader className="bg-[#5F9EA0] text-white p-4">
-          <CardTitle className="text-2xl font-bold text-center">
-            AI Assistant
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-4">
-          <ScrollArea className="h-96 w-full p-4">
-            <div className="flex flex-col w-full mx-auto space-y-4">
-              {messages.map((m) => (
-                <div
-                  key={m.id}
-                  className={`flex ${
-                    m.role === "user" ? "justify-end" : "justify-start"
-                  } mb-4`}
-                >
-                  <div
-                    className={`flex items-start gap-2 ${
-                      m.role === "user" ? "flex-row-reverse" : "flex-row"
-                    }`}
-                  >
-                    <Avatar className="flex items-center justify-center bg-slate-200 rounded-full size-11">
-                      {m.role === "user" ? (
-                        <User size={27} className=" text-blue-700" />
-                      ) : (
-                        <Bot size={28} className="text-green-700" />
-                      )}
-                    </Avatar>
-                    <div
-                      className={`mx-2 p-3 ${
-                        m.role === "user"
-                          ? "bg-blue-100 text-blue-900 rounded-full"
-                          : "bg-gray-100 text-gray-900 rounded-lg"
-                      } shadow-md`}
-                    >
-                      <p className="text-sm">{m.content}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div ref={messagesEndRef} />
-          </ScrollArea>
-        </CardContent>
-        <CardFooter className="p-4 bg-gray-100 flex items-center gap-3">
-          <form
-            onSubmit={handleSubmit}
-            className="flex items-center space-x-2 w-full"
-          >
-            <Input
-              placeholder="Ask me anything..."
-              className="flex-grow border-2 border-[#5F9EA0] rounded-full px-6 py-3 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-              value={input}
-              onChange={handleInputChange}
-            />
-          </form>
-          <Button
-            type="submit"
-            className="bg-[#5F9EA0] text-white rounded-full p-3 shadow-lg hover:opacity-90 hover:bg-[#5F9EA0] transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-          >
-            <Send className="h-5 w-5" />
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="flex flex-col items-center p-4">
+      <button
+        onClick={toggleTheme}
+        className="relative flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 transition-all"
+      >
+        <Sun
+          className={`h-6 w-6 transition-transform duration-300 ${
+            theme === "dark" ? "rotate-0 scale-0" : "rotate-0 scale-100"
+          }`}
+        />
+        <Moon
+          className={`absolute h-6 w-6 transition-transform duration-300 ${
+            theme === "dark" ? "rotate-0 scale-100" : "rotate-90 scale-0"
+          }`}
+        />
+      </button>
+      <div className="w-full">
+        {theme === "light" ? <LightChatbox /> : <DarkChatbox />}
+      </div>
     </div>
   );
 };
 
-export default Chatbox;
+export default Homepage;
