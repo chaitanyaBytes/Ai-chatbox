@@ -88,6 +88,7 @@ const LightChatbox = () => {
             />
           </form>
           <Button
+            onClick={handleSubmit}
             type="submit"
             className="bg-[#5F9EA0] text-white rounded-full p-3 shadow-lg hover:opacity-90 hover:bg-[#5F9EA0] transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
           >
